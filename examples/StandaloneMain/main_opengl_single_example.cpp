@@ -135,6 +135,7 @@ int runSimulation(int argc, char* argv[])
 	delete example;
 	delete app;
 
+	dtElapsed = btScalar(clock.getTimeInSeconds());
 	return static_cast<int>(dtElapsed);
 }
 
