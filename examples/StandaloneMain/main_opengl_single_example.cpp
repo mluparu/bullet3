@@ -67,56 +67,80 @@ public:
 	{
 	}
 };
-int main(int argc, char* argv[])
+
+constexpr int factorial(int x) {
+	if (x > 1)
+		return x * factorial(x - 1);
+	else
+		return x;
+}
+
+constexpr int SECONDS_TO_WAIT = factorial(3);
+#ifndef IN_GTEST
+constexpr int SECONDS_TO_EXIT = factorial(4);
+#else
+constexpr int SECONDS_TO_EXIT = factorial(2);
+#endif
+
+int runSimulation(int argc, char* argv[])
 {
-	
-	SimpleOpenGL3App* app = new SimpleOpenGL3App("Bullet Standalone Example",1024,768,true);
-	
+	SimpleOpenGL3App* app = new SimpleOpenGL3App("Bullet Standalone Example", 1024, 768, true);
+
 	prevMouseButtonCallback = app->m_window->getMouseButtonCallback();
 	prevMouseMoveCallback = app->m_window->getMouseMoveCallback();
 
 	app->m_window->setMouseButtonCallback((b3MouseButtonCallback)OnMouseDown);
 	app->m_window->setMouseMoveCallback((b3MouseMoveCallback)OnMouseMove);
-	
-	OpenGLGuiHelper gui(app,false);
+
+	OpenGLGuiHelper gui(app, false);
 	//LessDummyGuiHelper gui(app);
 	//DummyGUIHelper gui;
-
 	CommonExampleOptions options(&gui);
-	
+
 
 	example = StandaloneExampleCreateFunc(options);
 	example->processCommandLineArgs(argc, argv);
 
 	example->initPhysics();
 	example->resetCamera();
-	
-	b3Clock clock;
+
+	b3Clock stepClock, clock;
+	btScalar dtElapsed;
 
 	do
 	{
 		app->m_instancingRenderer->init();
-    app->m_instancingRenderer->updateCamera(app->getUpAxis());
+		app->m_instancingRenderer->updateCamera(app->getUpAxis());
 
-		btScalar dtSec = btScalar(clock.getTimeInSeconds());
+		btScalar dtSec = btScalar(stepClock.getTimeInSeconds());
+		dtElapsed = btScalar(clock.getTimeInSeconds());
+
 		if (dtSec<0.1)
 			dtSec = 0.1;
-	
 		example->stepSimulation(dtSec);
-	  clock.reset();
-
-		example->renderScene();
- 	
-		DrawGridData dg;
-        dg.upAxis = app->getUpAxis();
-		app->drawGrid(dg);
+		stepClock.reset();
 		
+		example->renderScene();
+		if (dtElapsed > SECONDS_TO_WAIT)
+			example->drawText3D("Hello!", 0, 1, 0, 2);
+
+		DrawGridData dg;
+		dg.upAxis = app->getUpAxis();
+		app->drawGrid(dg);
+
 		app->swapBuffer();
-	} while (!app->m_window->requestedExit());
+	} while (!app->m_window->requestedExit() && dtElapsed <= SECONDS_TO_EXIT);
 
 	example->exitPhysics();
 	delete example;
 	delete app;
-	return 0;
+
+	return static_cast<int>(dtElapsed);
 }
 
+#ifndef IN_GTEST
+int main(int argc, char* argv[])
+{
+	return runSimulation(argc, argv);
+}
+#endif

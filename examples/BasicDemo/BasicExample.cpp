@@ -44,6 +44,10 @@ struct BasicExample : public CommonRigidBodyBase
 		float targetPos[3]={0,0,0};
 		m_guiHelper->resetCamera(dist,yaw,pitch,targetPos[0],targetPos[1],targetPos[2]);
 	}
+	virtual void drawText3D(const char* txt, float posX, float posY, float posZ, float size)
+	{
+		m_guiHelper->drawText3D(txt, posX, posY, posZ, size);
+	}
 };
 
 void BasicExample::initPhysics()

@@ -48,6 +48,8 @@ public:
 	virtual void	updateGraphics(){}
 	virtual void	stepSimulation(float deltaTime)=0;
 	virtual void	renderScene()=0;
+	virtual void	drawText3D(const char* txt, float posX, float posY, float posZ, float size) {};
+
 	virtual void	physicsDebugDraw(int debugFlags)=0;//for now we reuse the flags in Bullet/src/LinearMath/btIDebugDraw.h
 	//reset camera is only called when switching demo. this way you can restart (initPhysics) and watch in a specific location easier
 	virtual void	resetCamera(){};
