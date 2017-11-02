@@ -1,0 +1,38 @@
+{
+  "version": "0.2.1",
+  "defaults": {},
+  "configurations": [
+    {
+      "type": "cppdbg",
+      "projectTarget": "AppBasicExampleGui (examples\\BasicDemo\\AppBasicExampleGui)",
+      "name": "AppBasicExampleGui (examples\\BasicDemo\\AppBasicExampleGui)",
+      "project": "CMakeLists.txt",
+      "cwd": "${debugInfo.remoteWorkspaceRoot}",
+      "program": "${debugInfo.fullTargetPath}",
+      "MIMode": "gdb",
+      "externalConsole": true,
+      "remoteMachineName": "${debugInfo.remoteMachineName}",
+      "pipeTransport": {
+        "pipeProgram": "${debugInfo.shellexecPath}",
+        "pipeArgs": [
+          "/s",
+          "${debugInfo.remoteMachineId}",
+          "/p",
+          "${debugInfo.parentProcessId}",
+          "/c",
+          "export DISPLAY=:0;gdb --interpreter=mi"
+        ]
+      }
+    },
+    {
+      "type": "cppdbg",
+      "project": "CMakeLists.txt",
+      "projectTarget": "AppBasicExampleGui.exe (examples\\BasicDemo\\AppBasicExampleGui.exe)",
+      "name": "GDB: AppBasicExampleGui.exe (examples\\BasicDemo\\AppBasicExampleGui.exe)",
+      "program": "${debugInfo.target}",
+      "MIMode": "gdb",
+      "miDebuggerPath": "${env.MINGW_PREFIX}\\bin\\gdb.exe",
+      "externalConsole": true
+    }
+  ]
+}
