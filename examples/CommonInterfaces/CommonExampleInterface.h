@@ -3,6 +3,13 @@
 #ifndef COMMON_EXAMPLE_INTERFACE_H
 #define COMMON_EXAMPLE_INTERFACE_H
 
+#include <chrono>
+#include <thread>
+
+#ifdef _WIN32
+#include <windows.h>
+#endif
+
 struct CommandProcessorCreationInterface
 {
 	virtual class CommandProcessorInterface* createCommandProcessor()=0;

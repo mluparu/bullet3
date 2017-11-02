@@ -26,6 +26,8 @@ subject to the following restrictions:
 #include <stdio.h>
 #include "../ExampleBrowser/OpenGLGuiHelper.h"
 
+using namespace std::chrono_literals;
+
 CommonExampleInterface*    example;
 int gSharedMemoryKey=-1;
 
