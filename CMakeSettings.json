@@ -2,7 +2,7 @@
   // See https://go.microsoft.com//fwlink//?linkid=834763 for more information about this file.
   "configurations": [
     {
-      "name": "mingw-w64",
+      "name": "Windows-mingw-w64",
       "inheritEnvironments": [ "linux-x64" ],
       "environments": [
         {
@@ -33,10 +33,9 @@
           "value": "14"
         }
       ]
-
     },
     {
-      "name": "x86-Debug",
+      "name": "Windows-x86-Debug",
       "generator": "Ninja",
       "configurationType": "Debug",
       "inheritEnvironments": [ "msvc_x86" ],
@@ -53,43 +52,9 @@
       ]
     },
     {
-      "name": "x86-Release",
-      "generator": "Ninja",
-      "configurationType": "RelWithDebInfo",
-      "inheritEnvironments": [ "msvc_x86" ],
-      "buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\build\\${name}",
-      "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\install\\${name}",
-      "cmakeCommandArgs": "",
-      "buildCommandArgs": "-v",
-      "ctestCommandArgs": "",
-      "variables": [
-        {
-          "name": "CMAKE_CXX_STANDARD",
-          "value": "14"
-        }
-      ]
-    },
-    {
-      "name": "x64-Debug",
+      "name": "Windows-x64-Debug",
       "generator": "Ninja",
       "configurationType": "Debug",
-      "inheritEnvironments": [ "msvc_x64_x64" ],
-      "buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\build\\${name}",
-      "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\install\\${name}",
-      "cmakeCommandArgs": "",
-      "buildCommandArgs": "-v",
-      "ctestCommandArgs": "",
-      "variables": [
-        {
-          "name": "CMAKE_CXX_STANDARD",
-          "value": "14"
-        }
-      ]
-    },
-    {
-      "name": "x64-Release",
-      "generator": "Ninja",
-      "configurationType": "RelWithDebInfo",
       "inheritEnvironments": [ "msvc_x64_x64" ],
       "buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\build\\${name}",
       "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\install\\${name}",
@@ -112,34 +77,8 @@
       "cmakeExecutable": "/usr/local/bin/cmake",
       "buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\build\\${name}",
       "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\install\\${name}",
-      "remoteBuildRoot": "/var/tmp/build/${workspaceHash}/build/${name}",
-      "remoteInstallRoot": "/var/tmp/build/${workspaceHash}/install/${name}",
-      "remoteCopySources": true,
-      "remoteCopySourcesOutputVerbosity": "Normal",
-      "remoteCopySourcesConcurrentCopies": "10",
-      "remoteCopySourcesMethod": "sftp",
-      "cmakeCommandArgs": "",
-      "buildCommandArgs": "",
-      "ctestCommandArgs": "",
-      "inheritEnvironments": [ "linux-x64" ],
-      "variables": [
-        {
-          "name": "CMAKE_CXX_STANDARD",
-          "value": "14"
-        }
-      ]
-    },
-    {
-      "name": "Linux-Release",
-      "generator": "Unix Makefiles",
-      "remoteMachineName": "${defaultRemoteMachineName}",
-      "configurationType": "Release",
-      "remoteCMakeListsRoot": "/var/tmp/src/${workspaceHash}/${name}",
-      "cmakeExecutable": "/usr/local/bin/cmake",
-      "buildRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\build\\${name}",
-      "installRoot": "${env.USERPROFILE}\\CMakeBuilds\\${workspaceHash}\\install\\${name}",
-      "remoteBuildRoot": "/var/tmp/build/${workspaceHash}/build/${name}",
-      "remoteInstallRoot": "/var/tmp/build/${workspaceHash}/install/${name}",
+      "remoteBuildRoot": "/var/tmp/build/bullet3/build/${name}",
+      "remoteInstallRoot": "/var/tmp/build/bullet3/install/${name}",
       "remoteCopySources": true,
       "remoteCopySourcesOutputVerbosity": "Normal",
       "remoteCopySourcesConcurrentCopies": "10",

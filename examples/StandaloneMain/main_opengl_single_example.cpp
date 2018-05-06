@@ -18,9 +18,9 @@ subject to the following restrictions:
 #include "../CommonInterfaces/CommonExampleInterface.h"
 #include "../CommonInterfaces/CommonGUIHelperInterface.h"
 #include "../Utils/b3Clock.h"
-
-
-
+#ifndef _WIN32
+#include "unistd.h"
+#endif
 
 #include "../OpenGLWindow/SimpleOpenGL3App.h"
 #include <stdio.h>

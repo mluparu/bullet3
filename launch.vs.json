@@ -4,9 +4,19 @@
   "configurations": [
     {
       "type": "cppdbg",
-      "projectTarget": "AppBasicExampleGui (examples\\BasicDemo\\AppBasicExampleGui)",
+      "project": "CMakeLists.txt",
+      "projectTarget": "AppBasicExampleGui.exe (examples\\BasicDemo\\AppBasicExampleGui.exe)",
+      "name": "GDB: AppBasicExampleGui.exe (examples\\BasicDemo\\AppBasicExampleGui.exe)",
+      "program": "${debugInfo.target}",
+      "MIMode": "gdb",
+      "miDebuggerPath": "${env.MINGW_PREFIX}\\bin\\gdb.exe",
+      "externalConsole": true
+    },
+    {
+      "type": "cppdbg",
       "name": "AppBasicExampleGui (examples\\BasicDemo\\AppBasicExampleGui)",
       "project": "CMakeLists.txt",
+      "projectTarget": "AppBasicExampleGui (examples\\BasicDemo\\AppBasicExampleGui)",
       "cwd": "${debugInfo.remoteWorkspaceRoot}",
       "program": "${debugInfo.fullTargetPath}",
       "MIMode": "gdb",
@@ -20,19 +30,19 @@
           "/p",
           "${debugInfo.parentProcessId}",
           "/c",
-          "export DISPLAY=:0;gdb --interpreter=mi"
-        ]
-      }
-    },
-    {
-      "type": "cppdbg",
-      "project": "CMakeLists.txt",
-      "projectTarget": "AppBasicExampleGui.exe (examples\\BasicDemo\\AppBasicExampleGui.exe)",
-      "name": "GDB: AppBasicExampleGui.exe (examples\\BasicDemo\\AppBasicExampleGui.exe)",
-      "program": "${debugInfo.target}",
-      "MIMode": "gdb",
-      "miDebuggerPath": "${env.MINGW_PREFIX}\\bin\\gdb.exe",
-      "externalConsole": true
+          "export DISPLAY=:1;${debuggerCommand}",
+          "--tty=${debugInfo.tty}"
+        ],
+        "debuggerPath": "/usr/bin/gdb"
+      },
+      "setupCommands": [
+        {
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "visualizerFile": "${debugInfo.linuxNatvisPath}",
+      "showDisplayString": true
     }
   ]
 }
